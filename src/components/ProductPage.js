@@ -240,63 +240,133 @@ const ProductPage = () => {
   };
 
   // ---------- Submit ----------
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
+  // const handleFormSubmit = async (e) => {
+  //   e.preventDefault();
 
-    const formDataObj = new FormData();
-    formDataObj.append('sub_category_id', subCategoryId);
-    formDataObj.append('product_name', productData.product_name || '');
-    formDataObj.append('product_description', productData.product_description || '');
-    formDataObj.append('image_alt', productData.image_alt || '');
-    formDataObj.append('color', JSON.stringify(colors || []));
-    formDataObj.append('size', JSON.stringify(selectedSizes || []));
-    formDataObj.append('multiple_images', JSON.stringify(existingImages || []));
+  //   const formDataObj = new FormData();
+  //   formDataObj.append('sub_category_id', subCategoryId);
+  //   formDataObj.append('product_name', productData.product_name || '');
+  //   formDataObj.append('product_description', productData.product_description || '');
+  //   formDataObj.append('image_alt', productData.image_alt || '');
+  //   formDataObj.append('color', JSON.stringify(colors || []));
+  //   formDataObj.append('size', JSON.stringify(selectedSizes || []));
+  //   formDataObj.append('multiple_images', JSON.stringify(existingImages || []));
 
-    if (productData.product_image) formDataObj.append('product_image', productData.product_image);
-    if (productData.product_video) formDataObj.append('product_video', productData.product_video);
+  //   if (productData.product_image) formDataObj.append('product_image', productData.product_image);
+  //   if (productData.product_video) formDataObj.append('product_video', productData.product_video);
 
-    newImages.forEach((file) => formDataObj.append('multi_images[]', file));
+  //   newImages.forEach((file) => formDataObj.append('multiple_images[]', file));
 
-    const apiUrl =
-      modalType === 'add'
-        ? 'https://vadhuu.com/cmsapi/products'
-        : `https://vadhuu.com/cmsapi/products/${currentProductId}`;
-    const method = modalType === 'add' ? 'post' : 'put';
+  //   const apiUrl =
+  //     modalType === 'add'
+  //       ? 'https://vadhuu.com/cmsapi/products'
+  //       : `https://vadhuu.com/cmsapi/products/${currentProductId}`;
+  //   const method = modalType === 'add' ? 'post' : 'put';
 
-    try {
-      // Start upload
-      setUploading(true);
-      setUploadPercent(0);
-      setSnack({ open: true, text: 'Uploading, please wait...', severity: 'info' });
+  //   try {
+  //     // Start upload
+  //     setUploading(true);
+  //     setUploadPercent(0);
+  //     setSnack({ open: true, text: 'Uploading, please wait...', severity: 'info' });
 
-      const response = await axios[method](apiUrl, formDataObj, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-        onUploadProgress: (progressEvent) => {
-          if (progressEvent.total) {
-            const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-            setUploadPercent(percent);
-          }
-        },
-      });
+  //     const response = await axios[method](apiUrl, formDataObj, {
+  //       headers: { 'Content-Type': 'multipart/form-data' },
+  //       onUploadProgress: (progressEvent) => {
+  //         if (progressEvent.total) {
+  //           const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+  //           setUploadPercent(percent);
+  //         }
+  //       },
+  //     });
 
-      // Success message from backend
-      const msg =
-        response?.data?.message ||
-        (modalType === 'add' ? 'Product added successfully!' : 'Product updated successfully!');
+  //     // Success message from backend
+  //     const msg =
+  //       response?.data?.message ||
+  //       (modalType === 'add' ? 'Product added successfully!' : 'Product updated successfully!');
 
-      setSnack({ open: true, text: msg, severity: 'success' });
+  //     setSnack({ open: true, text: msg, severity: 'success' });
 
-      await fetchProducts();
-      handleCloseModal();
-    } catch (err) {
-      console.error('Error saving product:', err);
-      const errMsg = err.response?.data?.error || 'Upload failed. Please try again.';
-      setSnack({ open: true, text: errMsg, severity: 'error' });
-    } finally {
-      setUploading(false);
-      setUploadPercent(0);
+  //     await fetchProducts();
+  //     handleCloseModal();
+  //   } catch (err) {
+  //     console.error('Error saving product:', err);
+  //     const errMsg = err.response?.data?.error || 'Upload failed. Please try again.';
+  //     setSnack({ open: true, text: errMsg, severity: 'error' });
+  //   } finally {
+  //     setUploading(false);
+  //     setUploadPercent(0);
+  //   }
+  // };
+
+
+  // ---------- Submit ----------
+const handleFormSubmit = async (e) => {
+  e.preventDefault();
+
+  const formDataObj = new FormData();
+  formDataObj.append('sub_category_id', subCategoryId);
+  formDataObj.append('product_name', productData.product_name || '');
+  formDataObj.append('product_description', productData.product_description || '');
+  formDataObj.append('image_alt', productData.image_alt || '');
+  formDataObj.append('color', JSON.stringify(colors || []));
+  formDataObj.append('size', JSON.stringify(selectedSizes || []));
+  formDataObj.append('existing_images', JSON.stringify(existingImages || []));
+
+  if (productData.product_image) formDataObj.append('product_image', productData.product_image);
+  if (productData.product_video) formDataObj.append('product_video', productData.product_video);
+
+  // Append new multiple images
+  newImages.forEach((file) => formDataObj.append('multiple_images', file));
+
+  // 👇👇 ADD THIS: print the request data
+  console.log('--- FormData contents ---');
+  for (const [key, value] of formDataObj.entries()) {
+    if (value instanceof File) {
+      console.log(key, `File: ${value.name} (${value.type}, ${value.size} bytes)`);
+    } else {
+      console.log(key, value);
     }
-  };
+  }
+  console.log('-------------------------');
+
+  const apiUrl =
+    modalType === 'add'
+      ? 'https://vadhuu.com/cmsapi/products'
+      : `https://vadhuu.com/cmsapi/products/${currentProductId}`;
+  const method = modalType === 'add' ? 'post' : 'put';
+
+  try {
+    setUploading(true);
+    setUploadPercent(0);
+    setSnack({ open: true, text: 'Uploading, please wait...', severity: 'info' });
+
+    const response = await axios[method](apiUrl, formDataObj, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+      withCredentials: false,
+      onUploadProgress: (progressEvent) => {
+        if (progressEvent.total) {
+          const percent = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+          setUploadPercent(percent);
+        }
+      },
+    });
+
+    const msg =
+      response?.data?.message ||
+      (modalType === 'add' ? 'Product added successfully!' : 'Product updated successfully!');
+    setSnack({ open: true, text: msg, severity: 'success' });
+
+    await fetchProducts();
+    handleCloseModal();
+  } catch (err) {
+    console.error('Error saving product:', err);
+    const errMsg = err.response?.data?.error || 'Upload failed. Please try again.';
+    setSnack({ open: true, text: errMsg, severity: 'error' });
+  } finally {
+    setUploading(false);
+    setUploadPercent(0);
+  }
+};
 
 
   const handleDeleteProduct = async (productId) => {

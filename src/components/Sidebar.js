@@ -47,7 +47,7 @@ const Sidebar = ({ open, onToggle }) => {
   const [connectUnreadCount, setConnectUnreadCount] = useState(0);
 
   useEffect(() => {
-    const socket = io('https://vadhuu.com/stats/'); // Connect to backend
+    const socket = io(''); // Connect to backend
 
     socket.on('update-unread-counts', ({ careerUnread, connectUnread }) => {
       // console.log('Unread counts received:', { careerUnread, connectUnread }); // Debugging log
@@ -62,7 +62,7 @@ const Sidebar = ({ open, onToggle }) => {
 
   // Function to mark all as read
   const markAllAsRead = (type) => {
-    axios.post(`https://vadhuu.com/stats/${type}/mark-all-read`)
+    axios.post(``)
       .then(() => {
         // Reset unread count for the respective type
         if (type === 'career') {
