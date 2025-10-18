@@ -37,7 +37,7 @@ const Login = ({ onLogin }) => {
       }}>
 
         <Card variant='outlined' sx={{ p: 8, width: '100%'}}>	
-          <img src='https://banka1964.com/static/media/logo.38ec35200b67031298a5.gif' alt='' style={{
+          <img src='https://vadhuu.com/static/media/logo.38ec35200b67031298a5.gif' alt='' style={{
             width: 100
           }} />
           <Typography

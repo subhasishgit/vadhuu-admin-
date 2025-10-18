@@ -1,4 +1,4 @@
-![Logo](https://banka1964.com/static/media/logo.38ec35200b67031298a5.gif)
+![Logo](https://vadhuu.com/static/media/logo.38ec35200b67031298a5.gif)
 
 # Banka Web App
 
@@ -75,4 +75,4 @@ For support, email sudip.det@monkeywrench.in or join our Slack channel.
 
 ## Demo
 
-[Banka Admin](https://admin.banka1964.com/)
+[Banka Admin](https://admin.vadhuu.com/)
