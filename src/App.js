@@ -54,7 +54,7 @@ const App = () => {
           <>
             <AppBar position="fixed" sx={{
               zIndex: (theme) => theme.zIndex.drawer + 1, background: '#fff',
-              boxShadow: `0 0 10px 0 rgba(0, 0, 0, 0.1), 0 0 1px 0 #d99f59, 0 0 0 1px #f9d8af`,
+              boxShadow: `0 0 10px 0 rgba(0, 0, 0, 0.1), 0 0 1px 0 #530e2b, 0 0 0 1px #530e2b`,
               borderBottom: '1px solid transparent',
             }}>
               <Toolbar>
@@ -67,8 +67,8 @@ const App = () => {
                   <MenuIcon />
                 </IconButton> */}
                 <Box component="div" sx={{ flexGrow: 1 }}>
-                  <img src='https://vadhuu.com/static/media/logo.38ec35200b67031298a5.gif' alt='' style={{
-                    width: 100
+                  <img src='./logo.png' alt='' style={{
+                    width: 150
                   }} />
                 </Box>
                 {/* Logout Button */}

@@ -32,7 +32,7 @@ const DynamicTablePage = () => {
       });
       const filteredData = response.data.data.filter(row => row.id !== 1);
       setTableData(filteredData);
-      setTotalRecords(response.data.totalRecords-1);
+      setTotalRecords(response.data.totalRecords - 1);
 
       if (response.data.data.length > 0) {
         setColumns(Object.keys(response.data.data[0])); // Set columns based on the first row of data
@@ -225,43 +225,43 @@ const DynamicTablePage = () => {
 
       {/* Add/Edit Modal */}
       <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
-  <Box sx={{ width: 500, p: 4, bgcolor: 'background.paper', margin: 'auto', top: '20%', position: 'relative' }}>
-    <Typography variant="h6">{editMode ? 'Edit Record' : 'Add Record'}</Typography>
-    <form onSubmit={handleFormSubmit}>
-      {columns.map((column) => {
-        // Exclude the "id" field from the modal
-        if (column !== 'id') {
-          return column.startsWith('image_') || column.startsWith('video_') || column.startsWith('pdf_') ? (
-            // Handle file input
-            <div key={column}>
-              <label>{column}</label>
-              <input
-                type="file"
-                name={column}
-                onChange={handleInputChange} // Do not bind "value" for file inputs
-              />
-            </div>
-          ) : (
-            // Handle other text inputs
-            <TextField
-              key={column}
-              label={column}
-              name={column}
-              value={formData[column] || ''}
-              onChange={handleInputChange}
-              fullWidth
-              margin="normal"
-            />
-          );
-        }
-        return null; // Do not render the "id" field
-      })}
-      <Button variant="contained" color="primary" type="submit" sx={{ mt: 2 }}>
-        {editMode ? 'Save Changes' : 'Add Record'}
-      </Button>
-    </form>
-  </Box>
-</Modal>
+        <Box sx={{ width: 500, p: 4, bgcolor: 'background.paper', margin: 'auto', top: '20%', position: 'relative' }}>
+          <Typography variant="h6">{editMode ? 'Edit Record' : 'Add Record'}</Typography>
+          <form onSubmit={handleFormSubmit}>
+            {columns.map((column) => {
+              // Exclude the "id" field from the modal
+              if (column !== 'id') {
+                return column.startsWith('image_') || column.startsWith('video_') || column.startsWith('pdf_') ? (
+                  // Handle file input
+                  <div key={column}>
+                    <label>{column}</label>
+                    <input
+                      type="file"
+                      name={column}
+                      onChange={handleInputChange} // Do not bind "value" for file inputs
+                    />
+                  </div>
+                ) : (
+                  // Handle other text inputs
+                  <TextField
+                    key={column}
+                    label={column}
+                    name={column}
+                    value={formData[column] || ''}
+                    onChange={handleInputChange}
+                    fullWidth
+                    margin="normal"
+                  />
+                );
+              }
+              return null; // Do not render the "id" field
+            })}
+            <Button variant="contained" color="primary" type="submit" sx={{ mt: 2 }}>
+              {editMode ? 'Save Changes' : 'Add Record'}
+            </Button>
+          </form>
+        </Box>
+      </Modal>
 
     </Box>
   );

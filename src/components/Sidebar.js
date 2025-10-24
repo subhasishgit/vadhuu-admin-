@@ -16,7 +16,7 @@ import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
 import DiamondOutlinedIcon from '@mui/icons-material/DiamondOutlined';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import PanoramaOutlinedIcon from '@mui/icons-material/PanoramaOutlined';
-import PhotoOutlinedIcon from '@mui/icons-material/PhotoOutlined';
+
 import Groups3OutlinedIcon from '@mui/icons-material/Groups3Outlined';
 import Diversity2OutlinedIcon from '@mui/icons-material/Diversity2Outlined';
 import DateRangeOutlinedIcon from '@mui/icons-material/DateRangeOutlined';
@@ -24,7 +24,7 @@ import PermContactCalendarOutlinedIcon from '@mui/icons-material/PermContactCale
 import PermMediaOutlinedIcon from '@mui/icons-material/PermMediaOutlined';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
-import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+
 
 import { styled } from '@mui/system';
 import { Link } from 'react-router-dom';

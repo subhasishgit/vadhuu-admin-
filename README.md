@@ -1,8 +1,8 @@
 ![Logo](https://vadhuu.com/static/media/logo.38ec35200b67031298a5.gif)
 
-# Banka Web App
+# Shree Saree Kunj Web App
 
-The Banka project uses [React.js](https://react.dev/) version 18.3.1
+The Shree Saree Kunj project uses [React.js](https://react.dev/) version 18.3.1
 
 ## Available Scripts
 
@@ -75,4 +75,4 @@ For support, email sudip.det@monkeywrench.in or join our Slack channel.
 
 ## Demo
 
-[Banka Admin](https://admin.vadhuu.com/)
+[Shree Saree Kunj Admin](https://admin.vadhuu.com/)

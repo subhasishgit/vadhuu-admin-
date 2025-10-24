@@ -11,7 +11,7 @@ const GlobalTheme = createTheme({
         mode: 'light',
 
         general: {
-            bodyTxt: '#0E1D42',
+            bodyTxt: '#530e2b',
             grayDark: '#dfdfdf',
             grayLight: '#F3F6F5',
             grayLighter: '#f5f5f5',
@@ -19,9 +19,9 @@ const GlobalTheme = createTheme({
         },
 
         primary: {
-            main: '#d99f59',
-            light: '#f9d8af',
-            dark: '#eb8000',
+            main: '#530e2b',
+            light: '#75153dff',
+            dark: '#5c0529ff',
         },
 
         secondary: {

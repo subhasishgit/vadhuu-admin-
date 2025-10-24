@@ -37,13 +37,15 @@ const Login = ({ onLogin }) => {
       }}>
 
         <Card variant='outlined' sx={{ p: 8, width: '100%'}}>	
-          <img src='https://vadhuu.com/static/media/logo.38ec35200b67031298a5.gif' alt='' style={{
-            width: 100
+          <img src='../logo.png' alt='Vadhuu logo' style={{
+            width: 300,
+            display: 'block',
+            margin: '0 auto'
           }} />
           <Typography
             component="h1"
             variant="h5"
-            sx={{ width: '100%', fontSize: 'clamp(1rem, 10vw, 1.8rem)' }}
+            sx={{ width: '100%', mt: 5, fontSize: 'clamp(1rem, 10vw, 1.8rem)' }}
           >
             Sign in
           </Typography>
@@ -76,7 +78,7 @@ const Login = ({ onLogin }) => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <Button type="submit" variant="contained" color="primary" fullWidth sx={{
-              borderRadius: 5, mt: 2, py: 1.2
+              borderRadius: 5, mt: 2, py: 2
             }}>Sign in</Button>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <Link href="/Forgot" sx={{cursor: 'pointer'}}>Reset Password</Link>
