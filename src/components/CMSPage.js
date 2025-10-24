@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Grid from '@mui/material/Grid';
 import { GlobalTheme } from './../theme.js';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const CMSPage = () => {
   const [categories, setCategories] = useState([]);
@@ -47,6 +50,16 @@ const CMSPage = () => {
   const maxActiveSwitches = 2; // Set the maximum number of switches that can be on
   const [loading, setLoading] = useState(false); // New state for loading
   const baseImageUrl = 'https://vadhuu.com/api/cmsapi/uploads';
+
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   useEffect(() => {
     fetchCategories();
@@ -408,27 +421,47 @@ const CMSPage = () => {
                     />
                   </TableCell>
                   <TableCell sx={{ verticalAlign: 'top' }}>
-                    <Tooltip title="Edit Category">
-                      <IconButton onClick={() => handleOpenCategoryModal('edit-category', category)}>
-                        <Edit />
-                      </IconButton>
-                    </Tooltip>
-                    <Tooltip title="Delete Category">
-                      <IconButton
-                        onClick={() => {
-                          if (window.confirm('Are you sure you want to delete this?')) {
-                            axios.delete(`https://vadhuu.com/cmsapi/categories/${category.id}`)
-                              .then(fetchCategories)
-                              .catch(error => console.error('Error deleting category:', error));
-                          }
-                        }}
-                      >
-                        <Delete />
-                      </IconButton>
-                    </Tooltip>
-                    <IconButton onClick={() => toggleCategory(category.id)}>
-                      {expandedCategoryId === category.id ? <ExpandLess /> : <ExpandMore />}
-                    </IconButton>
+                    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <div>
+                        <IconButton
+                          id={`category-menu-button-${category.id}`}
+                          aria-controls={open ? `category-menu-${category.id}` : undefined}
+                          aria-haspopup="true"
+                          aria-expanded={open ? 'true' : undefined}
+                          onClick={(event) => handleClick(event, category.id)}
+                        >
+                          <MoreVertIcon />
+                        </IconButton>
+                        <Menu
+                          id={`category-menu-${category.id}`}
+                          anchorEl={anchorEl}
+                          open={open}
+                          onClose={handleClose}
+                          slotProps={{
+                            list: {
+                              'aria-labelledby': `category-menu-button-${category.id}`,
+                            },
+                          }}
+                        >
+                          <MenuItem onClick={() => handleOpenCategoryModal('edit-category', category)}>
+                            <Edit /> Edit
+                          </MenuItem>
+                          <MenuItem onClick={() => {
+                            if (window.confirm('Are you sure you want to delete this?')) {
+                              axios.delete(`https://vadhuu.com/cmsapi/categories/${category.id}`)
+                                .then(fetchCategories)
+                                .catch(error => console.error('Error deleting category:', error));
+                            }
+                          }}><Delete /> Delete</MenuItem>
+                        </Menu>
+                      </div>
+                      <Tooltip title="Add/Edit Sub Categories">
+                        <IconButton onClick={() => toggleCategory(category.id)}>
+                          {expandedCategoryId === category.id ? <ExpandLess /> : <ExpandMore />}
+                        </IconButton>
+                      </Tooltip>
+                    </Box>
+
                   </TableCell>
                 </TableRow>
 
