@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, Typography, IconButton, Tooltip, Table, TableBody, TableCell, Stack, CircularProgress, Container, TableRow, Modal, TextField, TableHead, Switch } from '@mui/material';
+import { Box, Button, Typography, IconButton, Tooltip, Table, TableBody, InputLabel, TableCell, Stack, CircularProgress, Container, TableRow, Modal, TextField, TableHead, Switch } from '@mui/material';
 import { Edit, Delete, ExpandMore, ExpandLess } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
-import { InputLabel } from '@mui/material';
 import axios from 'axios';
-
+import Grid from '@mui/material/Grid';
 import { GlobalTheme } from './../theme.js';
 
 const CMSPage = () => {
@@ -541,7 +540,7 @@ const CMSPage = () => {
       <Modal open={modalOpen} onClose={handleCloseCategoryModal}>
         <Box
           sx={{
-            maxWidth: '800px',
+            maxWidth: '90%',
             maxHeight: '800px', // Set a max height
             p: 4,
             bgcolor: 'background.paper',
@@ -672,7 +671,7 @@ const CMSPage = () => {
       <Modal open={subcategoryModalOpen} onClose={handleCloseSubcategoryModal}>
         <Box
           sx={{
-            width: '800px',
+            width: '90%',
             maxHeight: '800px',
             p: 4,
             bgcolor: 'background.paper',
@@ -682,54 +681,66 @@ const CMSPage = () => {
             overflowY: 'auto',
           }}
         >
-          <Typography variant="h6">
-            {subcategoryEditMode ? 'Edit Subcategory' : 'Add Subcategory'} (All Fields Are Mandatory)
+          <Typography component='h2' variant="h3">
+            {subcategoryEditMode ? 'Edit Subcategory' : 'Add Sub Category'}
           </Typography>
           <form onSubmit={handleSubcategorySubmit}>
-            <TextField
-              label="Subcategory"
-              name="sub_category"
-              value={subcategoryData.sub_category}
-              onChange={(e) => setSubcategoryData({ ...subcategoryData, sub_category: e.target.value })}
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              label="Subcategory Heading"
-              name="sub_category_heading"
-              value={subcategoryData.sub_category_heading}
-              onChange={(e) => setSubcategoryData({ ...subcategoryData, sub_category_heading: e.target.value })}
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              label="Subcategory Description"
-              name="sub_category_description"
-              value={subcategoryData.sub_category_description}
-              onChange={(e) => setSubcategoryData({ ...subcategoryData, sub_category_description: e.target.value })}
-              fullWidth
-              multiline
-              rows={4}
-              margin="normal"
-            />
-            <TextField
-              label="SEO Keywords"
-              name="sub_category_seo_keywords"
-              value={subcategoryData.sub_category_seo_keywords}
-              onChange={(e) => setSubcategoryData({ ...subcategoryData, sub_category_seo_keywords: e.target.value })}
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              label="SEO Description"
-              name="sub_category_seo_description"
-              value={subcategoryData.sub_category_seo_description}
-              onChange={(e) => setSubcategoryData({ ...subcategoryData, sub_category_seo_description: e.target.value })}
-              fullWidth
-              multiline
-              rows={3}
-              margin="normal"
-            />
+            <Grid container spacing={2}>
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <TextField
+                  label="Sub Category"
+                  name="sub_category"
+                  value={subcategoryData.sub_category}
+                  onChange={(e) => setSubcategoryData({ ...subcategoryData, sub_category: e.target.value })}
+                  fullWidth
+                  margin="normal"
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <TextField
+                  label="Subcategory Heading"
+                  name="sub_category_heading"
+                  value={subcategoryData.sub_category_heading}
+                  onChange={(e) => setSubcategoryData({ ...subcategoryData, sub_category_heading: e.target.value })}
+                  fullWidth
+                  margin="normal"
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <TextField
+                  label="SEO Keywords"
+                  name="sub_category_seo_keywords"
+                  value={subcategoryData.sub_category_seo_keywords}
+                  onChange={(e) => setSubcategoryData({ ...subcategoryData, sub_category_seo_keywords: e.target.value })}
+                  fullWidth
+                  margin="normal"
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <TextField
+                  label="SEO Description"
+                  name="sub_category_seo_description"
+                  value={subcategoryData.sub_category_seo_description}
+                  onChange={(e) => setSubcategoryData({ ...subcategoryData, sub_category_seo_description: e.target.value })}
+                  fullWidth
+                  multiline
+                  rows={3}
+                  margin="normal"
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <TextField
+                  label="Subcategory Description"
+                  name="sub_category_description"
+                  value={subcategoryData.sub_category_description}
+                  onChange={(e) => setSubcategoryData({ ...subcategoryData, sub_category_description: e.target.value })}
+                  fullWidth
+                  multiline
+                  rows={4}
+                  margin="normal"
+                />
+              </Grid>
+            </Grid>
 
             <Box display="grid" gridTemplateColumns="200px 200px 300px" gap={2} alignItems="center" mb={2}>
               <InputLabel shrink>PLP Banner:</InputLabel>
