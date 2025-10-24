@@ -547,63 +547,90 @@ const CMSPage = () => {
             margin: 'auto',
             top: '80px',
             position: 'relative',
+            borderRadius: 2,
             overflowY: 'auto', // Enable vertical scroll
           }}
         >
 
-          <Typography variant="h6">{modalType === 'add-category' ? 'Add Category' : 'Edit Category'}(All Fields Are Mandatory)</Typography>
+          <Typography variant="h6">{modalType === 'add-category' ? 'Add Category' : 'Edit Category'}</Typography>
           <form onSubmit={handleCategorySubmit}>
-            <TextField
-              label="Category"
-              name="category"
-              value={formData.category}
-              onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              label="Category Heading"
-              name="category_heading"
-              value={formData.category_heading}
-              onChange={(e) => setFormData({ ...formData, category_heading: e.target.value })}
-              fullWidth
-              margin="normal"
-            />
-            <TextField
-              label="Category Description"
-              name="category_description"
-              value={formData.category_description}
-              onChange={(e) => setFormData({ ...formData, category_description: e.target.value })}
-              fullWidth
-              multiline
-              rows={4}
-              margin="normal"
-            />
-            <TextField
-              label="Category Seo Keywords"
-              name="category_seo_keywords"
-              value={formData.category_seo_keywords}
-              onChange={(e) => setFormData({ ...formData, category_seo_keywords: e.target.value })}
-              fullWidth
-              multiline
-              rows={4}
-              margin="normal"
-            />
-            <TextField
-              label="Category Seo Description"
-              name="category_seo_description"
-              value={formData.category_seo_description}
-              onChange={(e) => setFormData({ ...formData, category_seo_description: e.target.value })}
-              fullWidth
-              multiline
-              rows={4}
-              margin="normal"
-            />
-            <div style={{ display: 'grid', gridTemplateColumns: '200px 200px 300px', gap: '10px', alignItems: 'center', marginBottom: '10px' }}>
-              <InputLabel shrink>Category Banner:</InputLabel>
-              <input type="file" name="category_banner" onChange={handleCategoryBannerChange} />
-              {categoryBannerPreview && <img src={categoryBannerPreview} alt="Category Banner Preview" width="100" />}
-            </div>
+            <Grid container spacing={2}>
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <TextField
+                  label="Category (Saree, Kurti etc)"
+                  name="category"
+                  value={formData.category}
+                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                  fullWidth
+                  margin="normal"
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <TextField
+                  label="Category Heading (This will be shown on category page)"
+                  name="category_heading"
+                  value={formData.category_heading}
+                  onChange={(e) => setFormData({ ...formData, category_heading: e.target.value })}
+                  fullWidth
+                  margin="normal"
+                />
+              </Grid>
+
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <TextField
+                  label="Category Description (This will be shown on category page)"
+                  name="category_description"
+                  value={formData.category_description}
+                  onChange={(e) => setFormData({ ...formData, category_description: e.target.value })}
+                  fullWidth
+                  multiline
+                  rows={4}
+                  margin="normal"
+                />
+              </Grid>
+            </Grid>
+            <Grid container spacing={2}>
+              <Grid size={12}>
+                <Typography variant="h6" sx={{ mt: 2, mb: 1 }}>SEO Details</Typography>
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <TextField
+                  label="Category Seo Keywords"
+                  name="category_seo_keywords"
+                  value={formData.category_seo_keywords}
+                  onChange={(e) => setFormData({ ...formData, category_seo_keywords: e.target.value })}
+                  fullWidth
+                  multiline
+                  rows={4}
+                />
+              </Grid>
+
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <TextField
+                  label="Category Seo Description"
+                  name="category_seo_description"
+                  value={formData.category_seo_description}
+                  onChange={(e) => setFormData({ ...formData, category_seo_description: e.target.value })}
+                  fullWidth
+                  multiline
+                  rows={4}
+
+                />
+              </Grid>
+            </Grid>
+
+            <Grid container spacing={2} mt={2} >
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '200px 200px 300px', gap: '10px', alignItems: 'center', marginBottom: '10px' }}>
+                  <InputLabel shrink>Category Banner:</InputLabel>
+                  <input type="file" name="category_banner" onChange={handleCategoryBannerChange} />
+                  {categoryBannerPreview && <img src={categoryBannerPreview} alt="Category Banner Preview" width="100" />}
+                </div>
+              </Grid>
+
+              
+            </Grid>
+
 
             <div style={{ display: 'grid', gridTemplateColumns: '200px 200px 300px', gap: '10px', alignItems: 'center', marginBottom: '10px' }}>
               <InputLabel shrink>Category Mobile Banner:</InputLabel>
@@ -794,7 +821,7 @@ const CMSPage = () => {
         </Box>
       </Modal>
 
-    </Container>
+    </Container >
 
   );
 };
