@@ -619,49 +619,55 @@ const CMSPage = () => {
               </Grid>
             </Grid>
 
-            <Grid container spacing={2} mt={2} >
-              <Grid size={{ xs: 12, sm: 6 }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '200px 200px 300px', gap: '10px', alignItems: 'center', marginBottom: '10px' }}>
+            <Grid container spacing={2} mt={5}>
+              <Grid item xs={12} sm={6}>
+                <Box display="grid" gridTemplateColumns="200px 200px 300px" gap={2} alignItems="center" mb={2}>
                   <InputLabel shrink>Category Banner:</InputLabel>
                   <input type="file" name="category_banner" onChange={handleCategoryBannerChange} />
                   {categoryBannerPreview && <img src={categoryBannerPreview} alt="Category Banner Preview" width="100" />}
-                </div>
+                </Box>
               </Grid>
 
-              
+              <Grid item xs={12} sm={6}>
+                <Box display="grid" gridTemplateColumns="200px 200px 300px" gap={2} alignItems="center" mb={2}>
+                  <InputLabel shrink>Category Mobile Banner:</InputLabel>
+                  <input type="file" name="category_mobile_banner" onChange={handleCategoryMobileBannerChange} />
+                  {categoryMobileBannerPreview && <img src={categoryMobileBannerPreview} alt="Category Mobile Banner Preview" width="100" />}
+                </Box>
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <Box display="grid" gridTemplateColumns="200px 200px 300px" gap={2} alignItems="center" mb={2}>
+                  <InputLabel shrink>Category Thumbnail:</InputLabel>
+                  <input type="file" name="category_thumbnail" onChange={handleCategoryThumbnailChange} />
+                  {categoryThumbnailPreview && <img src={categoryThumbnailPreview} alt="Category Thumbnail Preview" width="100" />}
+                </Box>
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <Box display="grid" gridTemplateColumns="200px 200px 300px" gap={2} alignItems="center" mb={2}>
+                  <InputLabel shrink>Category Thumbnail Mobile:</InputLabel>
+                  <input type="file" name="category_thumbnail_mobile" onChange={handleMobileCategoryThumbnailChange} />
+                  {categoryMobileThumbnailPreview && <img src={categoryMobileThumbnailPreview} alt="Category Mobile Thumbnail Preview" width="100" />}
+                </Box>
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <Box display="grid" gridTemplateColumns="200px 200px 300px" gap={2} alignItems="center" mb={2}>
+                  <InputLabel shrink>Category Popular Pick Banner:</InputLabel>
+                  <input type="file" name="category_popular_pick_banner" onChange={handleCategoryPopularPickBannerChange} />
+                  {categoryPopularPickBannerPreview && <img src={categoryPopularPickBannerPreview} alt="Popular Pick Banner Preview" width="100" />}
+                </Box>
+              </Grid>
+
+              <Grid item xs={12} sm={6}>
+                <Box display="grid" gridTemplateColumns="200px 200px 300px" gap={2} alignItems="center" mb={2}>
+                  <InputLabel shrink>Category Mobile Popular Pick Banner:</InputLabel>
+                  <input type="file" name="category_mobile_popular_pick_banner" onChange={handleCategoryMobilePopularPickBannerChange} />
+                  {categoryMobilePopularPickBannerPreview && <img src={categoryMobilePopularPickBannerPreview} alt="Popular Pick Banner Preview" width="100" />}
+                </Box>
+              </Grid>
             </Grid>
-
-
-            <div style={{ display: 'grid', gridTemplateColumns: '200px 200px 300px', gap: '10px', alignItems: 'center', marginBottom: '10px' }}>
-              <InputLabel shrink>Category Mobile Banner:</InputLabel>
-              <input type="file" name="category_mobile_banner" onChange={handleCategoryMobileBannerChange} />
-              {categoryMobileBannerPreview && <img src={categoryMobileBannerPreview} alt="Category Mobile Banner Preview" width="100" />}
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '200px 200px 300px', gap: '10px', alignItems: 'center', marginBottom: '10px' }}>
-              <InputLabel shrink>Category Thumbnail:</InputLabel>
-              <input type="file" name="category_thumbnail" onChange={handleCategoryThumbnailChange} />
-              {categoryThumbnailPreview && <img src={categoryThumbnailPreview} alt="Category Thumbnail Preview" width="100" />}
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '200px 200px 300px', gap: '10px', alignItems: 'center', marginBottom: '10px' }}>
-              <InputLabel shrink>Category Thumbnail Mobile:</InputLabel>
-              <input type="file" name="category_thumbnail_mobile" onChange={handleMobileCategoryThumbnailChange} />
-              {categoryMobileThumbnailPreview && <img src={categoryMobileThumbnailPreview} alt="Category Mobile Thumbnail Preview" width="100" />}
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '200px 200px 300px', gap: '10px', alignItems: 'center', marginBottom: '10px' }}>
-              <InputLabel shrink>Category Popular Pick Banner:</InputLabel>
-              <input type="file" name="category_popular_pick_banner" onChange={handleCategoryPopularPickBannerChange} />
-              {categoryPopularPickBannerPreview && <img src={categoryPopularPickBannerPreview} alt="Popular Pick Banner Preview" width="100" />}
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '200px 200px 300px', gap: '10px', alignItems: 'center', marginBottom: '10px' }}>
-              <InputLabel shrink>Category Mobile Popular Pick Banner:</InputLabel>
-              <input type="file" name="category_mobile_popular_pick_banner" onChange={handleCategoryMobilePopularPickBannerChange} />
-              {categoryMobilePopularPickBannerPreview && <img src={categoryMobilePopularPickBannerPreview} alt="Popular Pick Banner Preview" width="100" />}
-            </div>
-
 
             {/* <Box display="flex" justifyContent="space-between" mt={2}>
               <Typography>Is Popular</Typography>
@@ -705,7 +711,7 @@ const CMSPage = () => {
             margin: 'auto',
             top: '80px',
             position: 'relative',
-            overflowY: 'auto',
+            overflowY: 'auto', borderRadius: 2,
           }}
         >
           <Typography component='h2' variant="h3">
@@ -725,13 +731,31 @@ const CMSPage = () => {
               </Grid>
               <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
-                  label="Subcategory Heading"
+                  label="Sub Category Heading"
                   name="sub_category_heading"
                   value={subcategoryData.sub_category_heading}
                   onChange={(e) => setSubcategoryData({ ...subcategoryData, sub_category_heading: e.target.value })}
                   fullWidth
                   margin="normal"
                 />
+              </Grid>
+
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <TextField
+                  label="Sub Category Description"
+                  name="sub_category_description"
+                  value={subcategoryData.sub_category_description}
+                  onChange={(e) => setSubcategoryData({ ...subcategoryData, sub_category_description: e.target.value })}
+                  fullWidth
+                  multiline
+                  rows={4}
+                />
+              </Grid>
+            </Grid>
+
+            <Grid container spacing={2}>
+              <Grid size={12}>
+                <Typography variant="h6" sx={{ mt: 2, mb: 1 }}>SEO Details</Typography>
               </Grid>
               <Grid size={{ xs: 12, sm: 6 }}>
                 <TextField
@@ -740,7 +764,8 @@ const CMSPage = () => {
                   value={subcategoryData.sub_category_seo_keywords}
                   onChange={(e) => setSubcategoryData({ ...subcategoryData, sub_category_seo_keywords: e.target.value })}
                   fullWidth
-                  margin="normal"
+                  multiline
+                  rows={4}
                 />
               </Grid>
               <Grid size={{ xs: 12, sm: 6 }}>
@@ -751,63 +776,60 @@ const CMSPage = () => {
                   onChange={(e) => setSubcategoryData({ ...subcategoryData, sub_category_seo_description: e.target.value })}
                   fullWidth
                   multiline
-                  rows={3}
-                  margin="normal"
-                />
-              </Grid>
-              <Grid size={{ xs: 12, sm: 6 }}>
-                <TextField
-                  label="Subcategory Description"
-                  name="sub_category_description"
-                  value={subcategoryData.sub_category_description}
-                  onChange={(e) => setSubcategoryData({ ...subcategoryData, sub_category_description: e.target.value })}
-                  fullWidth
-                  multiline
                   rows={4}
-                  margin="normal"
                 />
               </Grid>
             </Grid>
 
-            <Box display="grid" gridTemplateColumns="200px 200px 300px" gap={2} alignItems="center" mb={2}>
-              <InputLabel shrink>PLP Banner:</InputLabel>
-              <input type="file" name="sub_category_banner" onChange={handleSubcategoryBannerChange} />
-              {subcategoryBannerPreview && <img src={subcategoryBannerPreview} alt="Subcategory Banner Preview" width="100" />}
-            </Box>
+            <Grid container spacing={2} mt={5}>
+              <Grid item xs={12} sm={6}>
+                <Box display="grid" gridTemplateColumns="200px 200px 300px" gap={2} alignItems="center" mb={2}>
+                  <InputLabel shrink>PLP Banner:</InputLabel>
+                  <input type="file" name="sub_category_banner" onChange={handleSubcategoryBannerChange} />
+                  {subcategoryBannerPreview && <img src={subcategoryBannerPreview} alt="Subcategory Banner Preview" width="100" />}
+                </Box>
+              </Grid>
 
-            <Box display="grid" gridTemplateColumns="200px 200px 300px" gap={2} alignItems="center" mb={2}>
-              <InputLabel shrink>Collection Banner:</InputLabel>
-              <input type="file" name="sub_category_thumbnail" onChange={handleSubcategoryThumbnailChange} />
-              {subcategoryThumbnailPreview && <img src={subcategoryThumbnailPreview} alt="Subcategory Thumbnail Preview" width="100" />}
-            </Box>
+              <Grid item xs={12} sm={6}>
+                <Box display="grid" gridTemplateColumns="200px 200px 300px" gap={2} alignItems="center" mb={2}>
+                  <InputLabel shrink>Collection Banner:</InputLabel>
+                  <input type="file" name="sub_category_thumbnail" onChange={handleSubcategoryThumbnailChange} />
+                  {subcategoryThumbnailPreview && <img src={subcategoryThumbnailPreview} alt="Subcategory Thumbnail Preview" width="100" />}
+                </Box>
+              </Grid>
 
-            <Box display="grid" gridTemplateColumns="200px 200px 300px" gap={2} alignItems="center" mb={2}>
-              <InputLabel shrink>PLP Banner Mobile:</InputLabel>
-              <input
-                type="file"
-                name="plp_banner_mobile"
-                onChange={(e) => {
-                  const file = e.target.files[0];
-                  setSubcategoryData({ ...subcategoryData, plp_banner_mobile: file });
-                  setPlpBannerMobilePreview(URL.createObjectURL(file));
-                }}
-              />
-              {plpBannerMobilePreview && <img src={plpBannerMobilePreview} alt="PLP Banner Mobile Preview" width="100" />}
-            </Box>
+              <Grid item xs={12} sm={6}>
+                <Box display="grid" gridTemplateColumns="200px 200px 300px" gap={2} alignItems="center" mb={2}>
+                  <InputLabel shrink>PLP Banner Mobile:</InputLabel>
+                  <input
+                    type="file"
+                    name="plp_banner_mobile"
+                    onChange={(e) => {
+                      const file = e.target.files[0];
+                      setSubcategoryData({ ...subcategoryData, plp_banner_mobile: file });
+                      setPlpBannerMobilePreview(URL.createObjectURL(file));
+                    }}
+                  />
+                  {plpBannerMobilePreview && <img src={plpBannerMobilePreview} alt="PLP Banner Mobile Preview" width="100" />}
+                </Box>
+              </Grid>
 
-            <Box display="grid" gridTemplateColumns="200px 200px 300px" gap={2} alignItems="center" mb={2}>
-              <InputLabel shrink>Collection Banner Mobile:</InputLabel>
-              <input
-                type="file"
-                name="collection_banner_mobile"
-                onChange={(e) => {
-                  const file = e.target.files[0];
-                  setSubcategoryData({ ...subcategoryData, collection_banner_mobile: file });
-                  setCollectionBannerMobilePreview(URL.createObjectURL(file));
-                }}
-              />
-              {collectionBannerMobilePreview && <img src={collectionBannerMobilePreview} alt="Collection Banner Mobile Preview" width="100" />}
-            </Box>
+              <Grid item xs={12} sm={6}>
+                <Box display="grid" gridTemplateColumns="200px 200px 300px" gap={2} alignItems="center" mb={2}>
+                  <InputLabel shrink>Collection Banner Mobile:</InputLabel>
+                  <input
+                    type="file"
+                    name="collection_banner_mobile"
+                    onChange={(e) => {
+                      const file = e.target.files[0];
+                      setSubcategoryData({ ...subcategoryData, collection_banner_mobile: file });
+                      setCollectionBannerMobilePreview(URL.createObjectURL(file));
+                    }}
+                  />
+                  {collectionBannerMobilePreview && <img src={collectionBannerMobilePreview} alt="Collection Banner Mobile Preview" width="100" />}
+                </Box>
+              </Grid>
+            </Grid>
             {loading ? (
               <Box display="flex" justifyContent="center" mt={2}>
                 <CircularProgress />
